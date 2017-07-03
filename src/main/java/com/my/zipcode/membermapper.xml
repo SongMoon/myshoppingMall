@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.my.zipcode.MemberMapper">
+ 
+    <resultMap type="Member" id="MemberResultMap">
+        <result property="email" column="EMAIL" />
+    </resultMap>
+ 
+    <!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
+    <select id="getMembers" resultMap="MemberResultMap">
+        SELECT * FROM shop_member
+    </select>
+    
+    <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
+    <insert id="insertMember" parameterType="com.my.zipcode.Member" >
+   		INSERT INTO shop_member ( mem_id,mem_passwd,mem_email,mem_phone,mem_postcode,mem_birth,mem_jibunAddress,mem_roadAddress,mem_chk_admin)
+   						 VALUES (#{mid},#{password},#{email},#{phone},#{postcode},#{birth},#{jibunAddress},#{roadAddress},#{admin})
+    </insert>
+    
+    <!-- update와 delete는 생략한다. -->
+    <update id=""></update>
+    
+    <delete id="deleteMember" parameterType="com.my.zipcode.Member">
+    </delete>
+ 
+</mapper>
+
+
